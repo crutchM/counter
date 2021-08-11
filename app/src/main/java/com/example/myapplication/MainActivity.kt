@@ -12,6 +12,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         showTotal()
         updateTotal()
+        resetCounter()
     }
 
     private fun updateTotal() {
@@ -22,7 +23,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun resetCounter(){
-
+        button2.setOnClickListener{
+            resetDB()
+            showTotal()
+        }
     }
 
     fun updateDb( ) {
@@ -39,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         totalView.text = result.toString()
     }
 
-    fun resetCounter(){
-        _db.writableDatabase.execSQL("DELETE FROM COUNTER WHERE id != 0")
+    fun resetDB(){
+        _db.writableDatabase.execSQL("DELETE FROM COUNTER WHERE id > 1")
     }
 }
