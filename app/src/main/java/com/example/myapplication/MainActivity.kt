@@ -21,6 +21,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun resetCounter(){
+
+    }
+
     fun updateDb( ) {
         _db.writableDatabase.execSQL("INSERT INTO COUNTER(id, number) VALUES (null, 1)")
     }
@@ -33,5 +37,9 @@ class MainActivity : AppCompatActivity() {
            result += cursor.getInt(cursor.getColumnIndex("number"))
         }
         totalView.text = result.toString()
+    }
+
+    fun resetCounter(){
+        _db.writableDatabase.execSQL("DELETE FROM COUNTER WHERE id != 0")
     }
 }
